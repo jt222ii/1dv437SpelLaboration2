@@ -11,7 +11,7 @@ namespace PartiklarOchSimuleringar
     class SplitterParticle
     {
         public Vector2 randomDirection;
-        public int maxSpeed = 1;
+        public float maxSpeed = 0.3f;
         public Texture2D _spark;
         public Vector2 position = new Vector2(0.5f, 0.5f);
         public Vector2 velocity;

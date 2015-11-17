@@ -10,7 +10,7 @@ namespace PartiklarOchSimuleringar
     class Camera
     {
         private int sizeOfField;
-        private float particleSizeOfField = 0.06f;
+        private float particleSizeOfField = 0.02f;
         float scale = 1;
         public Camera()
         {
