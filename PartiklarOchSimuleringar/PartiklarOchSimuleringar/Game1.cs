@@ -68,6 +68,10 @@ namespace PartiklarOchSimuleringar
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+            {
+                splitterSystem = new SplitterSystem(spark);
+            }
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             foreach (SplitterParticle particle in splitterSystem.particles)
@@ -85,7 +89,7 @@ namespace PartiklarOchSimuleringar
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin();
             foreach (SplitterParticle particle in splitterSystem.particles)
             {

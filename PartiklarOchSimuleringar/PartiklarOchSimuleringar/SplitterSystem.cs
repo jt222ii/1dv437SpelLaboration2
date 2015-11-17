@@ -14,7 +14,7 @@ namespace PartiklarOchSimuleringar
         private static Random rand = new Random();
         public SplitterSystem(Texture2D spark)
         {
-            particles = new SplitterParticle[99];
+            particles = new SplitterParticle[100];
             for (int i = 0; i < particles.Length; i++)
             {
                 particles[i] = new SplitterParticle(spark, rand);
