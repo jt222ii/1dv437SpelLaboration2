@@ -11,11 +11,18 @@ namespace PartiklarOchSimuleringar
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Texture2D spark;
+        SplitterSystem splitterSystem;
+        Camera camera = new Camera();
+
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 900;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 900;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -39,7 +46,9 @@ namespace PartiklarOchSimuleringar
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            spark = Content.Load<Texture2D>("spark.png");
+            splitterSystem = new SplitterSystem(spark);
+            camera.setSizeOfField(graphics.GraphicsDevice.Viewport);
             // TODO: use this.Content to load your game content here
         }
 
@@ -61,7 +70,10 @@ namespace PartiklarOchSimuleringar
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            foreach (SplitterParticle particle in splitterSystem.particles)
+            {
+                particle.move((float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -74,7 +86,14 @@ namespace PartiklarOchSimuleringar
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            spriteBatch.Begin();
+            foreach (SplitterParticle particle in splitterSystem.particles)
+            {
+               //spriteBatch.Draw(particle._spark, camera.convertToVisualCoords(particle.position, particle));   
+                float scale = camera.Scale(particle);
+                spriteBatch.Draw(particle._spark, camera.convertToVisualCoords(particle.position, particle), null, Color.White, 0, particle.randomDirection, scale, SpriteEffects.None, 0);
+            }
+            spriteBatch.End();
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
