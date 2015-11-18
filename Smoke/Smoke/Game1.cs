@@ -11,11 +11,17 @@ namespace Smoke
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        Camera camera;
+        SmokeSystem smokeSystem;
+        Texture2D smoke;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 800;
+            graphics.ApplyChanges();
         }
 
         /// <summary>
@@ -39,7 +45,9 @@ namespace Smoke
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            smoke = Content.Load<Texture2D>("particlesmoke.tga");
+            smokeSystem = new SmokeSystem(smoke);
+            camera.setSizeOfField(graphics.GraphicsDevice.Viewport);
             // TODO: use this.Content to load your game content here
         }
 
@@ -63,7 +71,10 @@ namespace Smoke
                 Exit();
 
             // TODO: Add your update logic here
-
+            foreach (SmokeParticle particle in smokeSystem.particles)
+            {
+                particle.move((float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
             base.Update(gameTime);
         }
 
@@ -74,7 +85,12 @@ namespace Smoke
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            foreach (SmokeParticle particle in smokeSystem.particles)
+            {
+                //spriteBatch.Draw(particle._spark, camera.convertToVisualCoords(particle.position, particle));   
+                float scale = camera.Scale(particle);
+                spriteBatch.Draw(particle._smoke, camera.convertToVisualCoords(particle.position, particle), null, Color.White, 0, particle.randomDirection, scale, SpriteEffects.None, 0);
+            }
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
