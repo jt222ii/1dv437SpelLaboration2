@@ -20,8 +20,8 @@ namespace PartiklarOchSimuleringar
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            graphics.PreferredBackBufferWidth = 900;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 900;
+            graphics.PreferredBackBufferWidth = 800;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 800;
             graphics.ApplyChanges();
         }
 

@@ -15,10 +15,6 @@ namespace PartiklarOchSimuleringar
         private float particleSizeOfField = 0.02f;
         Vector2 offput = Vector2.Zero;
         float scale = 1;
-        public Camera()
-        {
-
-        }
         public void setSizeOfField(Viewport port)
         {
             windowSizeX = port.Width;
