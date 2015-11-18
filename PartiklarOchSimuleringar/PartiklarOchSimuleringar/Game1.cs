@@ -66,14 +66,25 @@ namespace PartiklarOchSimuleringar
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        /// 
+        float time = 0;
         protected override void Update(GameTime gameTime)
         {
+            float elapsedTimeSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            time += elapsedTimeSeconds;
+            if (time >= 3)
+            {
+                splitterSystem = new SplitterSystem(spark);
+                time = 0;
+            }
             if (Keyboard.GetState().IsKeyDown(Keys.R))
             {
                 splitterSystem = new SplitterSystem(spark);
+                time = 0;
             }
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
             foreach (SplitterParticle particle in splitterSystem.particles)
             {
                 particle.move((float)gameTime.ElapsedGameTime.TotalSeconds);
