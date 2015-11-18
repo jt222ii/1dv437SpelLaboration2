@@ -15,7 +15,7 @@ namespace PartiklarOchSimuleringar
         public Texture2D _spark;
         public Vector2 position = new Vector2(0.5f, 0.5f);
         public Vector2 velocity;
-        public Vector2 acceleration = new Vector2(0.0f, 0.5f);
+        public Vector2 acceleration = new Vector2(0.0f, 0.75f);
         public SplitterParticle(Texture2D spark, Random rand)
 	    {
             _spark = spark;
@@ -28,18 +28,8 @@ namespace PartiklarOchSimuleringar
 	    }
         public void move(float elapsedTime)
         {
-            Vector2 newVelocity;
-            Vector2 newPosition;
-
-            newVelocity.X = elapsedTime * acceleration.X + velocity.X;
-            newVelocity.Y = elapsedTime * acceleration.Y + velocity.Y;
-
-            newPosition.X = elapsedTime * newVelocity.X + position.X;
-            newPosition.Y = elapsedTime * newVelocity.Y + position.Y;
-
-            acceleration = (newVelocity-velocity) / elapsedTime;
-            position = newPosition;
-            velocity = newVelocity;
+            velocity = elapsedTime * acceleration + velocity;
+            position = elapsedTime * velocity + position;
         }
     }
 }
