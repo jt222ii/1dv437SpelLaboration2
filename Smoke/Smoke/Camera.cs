@@ -12,7 +12,7 @@ namespace Smoke
         private int sizeOfField;
         int windowSizeX;
         int windowSizeY;
-        private float particleSizeOfField = 0.02f;
+        private float particleSizeOfField = 0.1f;
         Vector2 offput = Vector2.Zero;
         float scale = 1;
         public void setSizeOfField(Viewport port)

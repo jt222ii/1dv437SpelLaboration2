@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
 
 namespace Smoke
 {
@@ -11,7 +12,7 @@ namespace Smoke
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Camera camera;
+        Camera camera = new Camera();
         SmokeSystem smokeSystem;
         Texture2D smoke;
 
@@ -45,7 +46,8 @@ namespace Smoke
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            smoke = Content.Load<Texture2D>("particlesmoke.tga");
+            smoke = Content.Load<Texture2D>("test1");
+            //smoke = Content.Load<Texture2D>("particlesmoke");
             smokeSystem = new SmokeSystem(smoke);
             camera.setSizeOfField(graphics.GraphicsDevice.Viewport);
             // TODO: use this.Content to load your game content here
@@ -85,13 +87,15 @@ namespace Smoke
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
             foreach (SmokeParticle particle in smokeSystem.particles)
             {
                 //spriteBatch.Draw(particle._spark, camera.convertToVisualCoords(particle.position, particle));   
                 float scale = camera.Scale(particle);
                 spriteBatch.Draw(particle._smoke, camera.convertToVisualCoords(particle.position, particle), null, Color.White, 0, particle.randomDirection, scale, SpriteEffects.None, 0);
             }
-            // TODO: Add your drawing code here
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
