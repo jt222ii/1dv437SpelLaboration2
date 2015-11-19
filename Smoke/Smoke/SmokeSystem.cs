@@ -9,12 +9,18 @@ namespace Smoke
 {
     class SmokeSystem
     {
-        public List<SmokeParticle> particles = new List<SmokeParticle>();
-        public int maxParticles = 100;
-        public int particlesLifeTime = 5;
+        private List<SmokeParticle> particles = new List<SmokeParticle>();
+        private int maxParticles = 200;
+        private int particlesLifeTime = 4;
+        private float time = 0;
         private static Random rand = new Random();
+        private Texture2D smoke;
 
-        public void addSmoke(Texture2D smoke)
+        public SmokeSystem(Texture2D smokeTexture)
+        {
+            smoke = smokeTexture;
+        }
+        public void addSmoke()
         {
             if (particles.Count < maxParticles)
             {
@@ -23,6 +29,13 @@ namespace Smoke
         }
         public void Update(float elapsedTime)
         {
+            // I want it to continously add smokeparticles. If the lifetime of a particle is 5 seconds and only 10 are to be rendered they should be added spread out over those 10 seconds
+            time += elapsedTime;
+            if (time >= (float)particlesLifeTime / (float)maxParticles) 
+            {
+                addSmoke();
+                time = 0;
+            }
             foreach (SmokeParticle particle in particles)
             {
                 particle.move(elapsedTime);
@@ -31,12 +44,6 @@ namespace Smoke
                     particle.initOrResetParticle();
                 }
             }      
-            ////Initially wanted to just delete the ones that are done and create new ones...
-            //var particlesToDelete = particles.SingleOrDefault(p => p.lifeIsOver());
-            //if(particlesToDelete != null)
-            //{
-            //    particles.Remove(particlesToDelete);
-            //}
         }
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {

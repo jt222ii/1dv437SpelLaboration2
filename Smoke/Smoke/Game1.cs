@@ -15,7 +15,6 @@ namespace Smoke
         Camera camera = new Camera();
         SmokeSystem smokeSystem;
         Texture2D smoke;
-        float time = 0;
 
         public Game1()
         {
@@ -47,9 +46,8 @@ namespace Smoke
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            //smoke = Content.Load<Texture2D>("test1");
             smoke = Content.Load<Texture2D>("particlesmokepng");
-            smokeSystem = new SmokeSystem();
+            smokeSystem = new SmokeSystem(smoke);
             camera.setSizeOfField(graphics.GraphicsDevice.Viewport);
             // TODO: use this.Content to load your game content here
         }
@@ -74,14 +72,7 @@ namespace Smoke
                 Exit();
 
             // TODO: Add your update logic here
-            float elapsedTimeSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            time += elapsedTimeSeconds;
-            if (time >= (float)smokeSystem.particlesLifeTime / (float)smokeSystem.maxParticles) // I want it to continously add smokeparticles. If the lifetime of a particle is 5 seconds and only 10 are to be rendered they should be added spread out over those 10 seconds
-            {
-                smokeSystem.addSmoke(smoke); //adds a smoke particle.
-                time = 0;
-            }
-            smokeSystem.Update(elapsedTimeSeconds);
+            smokeSystem.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             base.Update(gameTime);
         }
 
