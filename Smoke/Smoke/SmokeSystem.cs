@@ -10,8 +10,8 @@ namespace Smoke
     class SmokeSystem
     {
         public List<SmokeParticle> particles = new List<SmokeParticle>();
-        public int maxParticles = 250;
-        public int particlesLifeTime = 3;
+        public int maxParticles = 100;
+        public int particlesLifeTime = 5;
         private static Random rand = new Random();
 
         public void addSmoke(Texture2D smoke)
