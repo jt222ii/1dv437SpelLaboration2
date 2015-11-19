@@ -8,14 +8,17 @@ namespace Smoke
 {
     class SmokeSystem
     {
-        public SmokeParticle[] particles;
+        public List<SmokeParticle> particles = new List<SmokeParticle>();
         private static Random rand = new Random();
-        public SmokeSystem(Texture2D smoke)
+        public void addSmoke(Texture2D smoke)
         {
-            particles = new SmokeParticle[100];
-            for (int i = 0; i < particles.Length; i++)
+            particles.Add(new SmokeParticle(smoke, rand));
+        }
+        public void moveAllSmokes(float elapsedTime)
+        {
+            foreach (SmokeParticle particle in particles)
             {
-                particles[i] = new SmokeParticle(smoke, rand);
+                particle.move(elapsedTime);
             }
         }
     }

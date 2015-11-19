@@ -46,9 +46,9 @@ namespace Smoke
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            smoke = Content.Load<Texture2D>("test1");
-            //smoke = Content.Load<Texture2D>("particlesmoke");
-            smokeSystem = new SmokeSystem(smoke);
+            //smoke = Content.Load<Texture2D>("test1");
+            smoke = Content.Load<Texture2D>("particlesmokepng");
+            smokeSystem = new SmokeSystem();
             camera.setSizeOfField(graphics.GraphicsDevice.Viewport);
             // TODO: use this.Content to load your game content here
         }
@@ -73,10 +73,8 @@ namespace Smoke
                 Exit();
 
             // TODO: Add your update logic here
-            foreach (SmokeParticle particle in smokeSystem.particles)
-            {
-                particle.move((float)gameTime.ElapsedGameTime.TotalSeconds);
-            }
+            smokeSystem.moveAllSmokes((float)gameTime.ElapsedGameTime.TotalSeconds);
+            smokeSystem.addSmoke(smoke);
             base.Update(gameTime);
         }
 
@@ -86,13 +84,14 @@ namespace Smoke
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White);
             spriteBatch.Begin();
             foreach (SmokeParticle particle in smokeSystem.particles)
             {
                 //spriteBatch.Draw(particle._spark, camera.convertToVisualCoords(particle.position, particle));   
                 float scale = camera.Scale(particle);
-                spriteBatch.Draw(particle._smoke, camera.convertToVisualCoords(particle.position, particle), null, Color.White, 0, particle.randomDirection, scale, SpriteEffects.None, 0);
+                Color color = new Color(particle.fade, particle.fade, particle.fade,particle.fade);
+                spriteBatch.Draw(particle._smoke, camera.convertToVisualCoords(particle.position, particle), null, color, 0, particle.randomDirection, scale, SpriteEffects.None, 0);
             }
 
             spriteBatch.End();

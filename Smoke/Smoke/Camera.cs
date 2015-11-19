@@ -12,7 +12,6 @@ namespace Smoke
         private int sizeOfField;
         int windowSizeX;
         int windowSizeY;
-        private float particleSizeOfField = 0.1f;
         Vector2 offput = Vector2.Zero;
         float scale = 1;
         public void setSizeOfField(Viewport port)
@@ -39,7 +38,7 @@ namespace Smoke
         }
         public float Scale(SmokeParticle particle)
         {
-            scale = sizeOfField * particleSizeOfField / particle._smoke.Width;
+            scale = sizeOfField * particle.particleSize / particle._smoke.Width;
             return scale;
         }
     }
