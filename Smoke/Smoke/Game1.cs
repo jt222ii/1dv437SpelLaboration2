@@ -15,6 +15,7 @@ namespace Smoke
         Camera camera = new Camera();
         SmokeSystem smokeSystem;
         Texture2D smoke;
+        float time = 0;
 
         public Game1()
         {
@@ -73,8 +74,14 @@ namespace Smoke
                 Exit();
 
             // TODO: Add your update logic here
-smokeSystem.moveAllSmokes((float)gameTime.ElapsedGameTime.TotalSeconds);
-            smokeSystem.addSmoke(smoke);
+            float elapsedTimeSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            time += elapsedTimeSeconds;
+            if (time >= (float)smokeSystem.particlesLifeTime / (float)smokeSystem.maxParticles) // I want it to continously add smokeparticles. If the lifetime of a particle is 5 seconds and only 10 are to be rendered they should be added spread out over those 10 seconds
+            {
+                smokeSystem.addSmoke(smoke); //adds a smoke particle.
+                time = 0;
+            }
+            smokeSystem.Update(elapsedTimeSeconds);
             base.Update(gameTime);
         }
 
@@ -85,17 +92,7 @@ smokeSystem.moveAllSmokes((float)gameTime.ElapsedGameTime.TotalSeconds);
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-            spriteBatch.Begin();
-            foreach (SmokeParticle particle in smokeSystem.particles)
-            {
-                //spriteBatch.Draw(particle._spark, camera.convertToVisualCoords(particle.position, particle));   
-                float scale = camera.Scale(particle);
-                Color color = new Color(particle.fade, particle.fade, particle.fade,particle.fade);
-                spriteBatch.Draw(particle._smoke, camera.convertToVisualCoords(particle.position, particle), null, color, 0, particle.randomDirection, scale, SpriteEffects.None, 0);
-            }
-
-            spriteBatch.End();
-
+            smokeSystem.Draw(spriteBatch, camera);
             base.Draw(gameTime);
         }
     }
