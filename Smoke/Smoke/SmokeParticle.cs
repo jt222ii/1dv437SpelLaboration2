@@ -42,5 +42,10 @@ namespace Smoke
             velocity = elapsedTime * acceleration + velocity;
             position = elapsedTime * velocity + position;
         }
+
+        public bool lifeIsOver()
+        {
+            return timeLived <= maxTimeToLive;
+        }
     }
 }

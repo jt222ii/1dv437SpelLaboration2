@@ -73,7 +73,7 @@ namespace Smoke
                 Exit();
 
             // TODO: Add your update logic here
-            smokeSystem.moveAllSmokes((float)gameTime.ElapsedGameTime.TotalSeconds);
+smokeSystem.moveAllSmokes((float)gameTime.ElapsedGameTime.TotalSeconds);
             smokeSystem.addSmoke(smoke);
             base.Update(gameTime);
         }
