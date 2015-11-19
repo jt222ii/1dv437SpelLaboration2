@@ -18,15 +18,12 @@ namespace Smoke
         {
             foreach (SmokeParticle particle in particles)
             {
-                //if(particle.lifeIsOver())
-                //{
-                //    particles.Remove(particle);
-                //}
-                //else
-                //{
-                    particle.move(elapsedTime);
-                //}
-
+                particle.move(elapsedTime);
+            }      
+            var particlesToDelete = particles.SingleOrDefault(p => p.lifeIsOver());
+            if(particlesToDelete != null)
+            {
+                particles.Remove(particlesToDelete);
             }
         }
     }

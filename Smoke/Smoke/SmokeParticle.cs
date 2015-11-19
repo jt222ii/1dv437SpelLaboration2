@@ -10,17 +10,17 @@ namespace Smoke
     class SmokeParticle
     {
         public Vector2 randomDirection;
-        public float maxSpeed = 0.2f;
+        public float maxSpeed = 0.07f;
         public Texture2D _smoke;
         public Vector2 position = new Vector2(0.5f, 0.8f);
         public Vector2 velocity;
-        public Vector2 acceleration = new Vector2(0.0f, -0.4f);
+        public Vector2 acceleration = new Vector2(0.0f, -0.07f);
         public float particleSize = 0.01f;
         private float particleMinSize = 0.01f;
-        private float particleMaxSize = 0.2f;
+        private float particleMaxSize = 0.3f;
         private float lifePercent;
         private float timeLived = 0;
-        private float maxTimeToLive = 2;
+        private float maxTimeToLive = 5;
         public float fade = 1;
 
         public SmokeParticle(Texture2D smoke, Random rand)
@@ -45,7 +45,7 @@ namespace Smoke
 
         public bool lifeIsOver()
         {
-            return timeLived <= maxTimeToLive;
+            return timeLived >= maxTimeToLive;
         }
     }
 }
