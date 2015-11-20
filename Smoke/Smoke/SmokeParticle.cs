@@ -9,8 +9,8 @@ namespace Smoke
 {
     class SmokeParticle
     {
-        public Vector2 randomDirection;
-        public float maxSpeed = 0.07f;
+        private Vector2 randomDirection;
+        private float maxSpeed = 0.07f;
         public Texture2D _smoke;
 
         private Vector2 startPosition = new Vector2(0.5f, 0.9f);
