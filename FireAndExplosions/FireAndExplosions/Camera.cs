@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FireAndExplosions.Explosion;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,13 @@ namespace FireAndExplosions
         {
             scale = sizeOfField * size / texture.Width;
             return scale;
+        }
+
+        public Vector2 convertToVisualCoordsForExplosion(Vector2 coords, Explosion2d explosion)
+        {
+            float visualX = coords.X * sizeOfField - (explosion.frameWidth) + offput.X;
+            float visualY = coords.Y * sizeOfField - (explosion.frameHeight) + offput.Y;
+            return new Vector2(visualX, visualY);
         }
     }
 }

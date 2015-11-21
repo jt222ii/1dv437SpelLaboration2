@@ -27,7 +27,7 @@ namespace FireAndExplosions
             {
                 //flytta detta till partikeln i fråga
                 float scale = camera.Scale(particle.particleSize, particle._spark);
-                spriteBatch.Draw(particle._spark, camera.convertToVisualCoords(particle.position, particle._spark), null, Color.White, 0, particle.randomDirection, scale, SpriteEffects.None, 1f);
+                spriteBatch.Draw(particle._spark, camera.convertToVisualCoords(particle.position, particle._spark), null, Color.White, 0, particle.randomDirection, scale, SpriteEffects.None, 0.2f);
             }
         }
 

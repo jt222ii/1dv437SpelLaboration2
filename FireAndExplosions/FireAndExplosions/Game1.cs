@@ -1,4 +1,5 @@
-﻿using FireAndExplosions.Smoke;
+﻿using FireAndExplosions.Explosion;
+using FireAndExplosions.Smoke;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,14 +18,18 @@ namespace FireAndExplosions
         Texture2D splitterTexture;
         Texture2D smokeTexture;
         Texture2D shockwaveTexture;
-        Texture2D lightTexture;
+        Texture2D explosionTexture;
 
         SplitterSystem splitterSystem;
         SmokeSystem smokeSystem;
+        Explosion2d explosion;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 900;  // set this value to the desired width of your window
+            graphics.PreferredBackBufferHeight = 900;
+            graphics.ApplyChanges();
             camera = new Camera();
 
         }
@@ -58,7 +63,8 @@ namespace FireAndExplosions
             smokeSystem = new SmokeSystem(smokeTexture);
             camera.setSizeOfField(graphics.GraphicsDevice.Viewport);
             //shockwaveTexture = Content.Load<Texture2D>("");
-            //lightTexture = Content.Load<Texture2D>("");
+            explosionTexture = Content.Load<Texture2D>("ExplosionSprite");
+            explosion = new Explosion2d(spriteBatch, explosionTexture, camera);
             // TODO: use this.Content to load your game content here
         }
 
@@ -95,10 +101,11 @@ namespace FireAndExplosions
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.FrontToBack);
             splitterSystem.Draw(spriteBatch, camera);
             smokeSystem.Draw(spriteBatch, camera);
+            explosion.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
             // TODO: Add your drawing code here
             spriteBatch.End();
             base.Draw(gameTime);

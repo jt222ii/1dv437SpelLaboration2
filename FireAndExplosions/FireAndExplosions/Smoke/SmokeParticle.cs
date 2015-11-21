@@ -10,16 +10,16 @@ namespace FireAndExplosions.Smoke
     class SmokeParticle
     {
         public Vector2 randomDirection;
-        public float maxSpeed = 0.07f;
+        public float maxSpeed = 0.2f;
         public Texture2D _smoke;
 
-        private Vector2 startPosition = new Vector2(0.5f, 0.8f);
-        private Vector2 acceleration = new Vector2(0.0f, -0.1f);
+        private Vector2 startPosition = new Vector2(0.5f, 0.85f);
+        private Vector2 acceleration = new Vector2(0.0f, -0.2f);
         private Vector2 velocity;
 
 
         private float particleMinSize = 0;
-        private float particleMaxSize = 0.5f;
+        private float particleMaxSize = 0.4f;
 
         private float lifePercent;
         private float timeLived;
@@ -77,7 +77,7 @@ namespace FireAndExplosions.Smoke
         {
             float scale = camera.Scale(particleSize, _smoke);
             Color color = new Color(fade, fade, fade, fade);
-            spriteBatch.Draw(_smoke, camera.convertToVisualCoords(position, _smoke), null, color, rotation, randomDirection, scale, SpriteEffects.None, 0f);
+            spriteBatch.Draw(_smoke, camera.convertToVisualCoords(position, _smoke), null, color, rotation, randomDirection, scale, SpriteEffects.None, 0.1f);
         }
     }
 }
