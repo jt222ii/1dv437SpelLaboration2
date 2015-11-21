@@ -11,12 +11,15 @@ namespace FireAndExplosions
     {
         public SplitterParticle[] particles;
         private static Random rand = new Random();
-        public SplitterSystem(Texture2D spark)
+        public SplitterSystem(Texture2D spark, Texture2D secondSpark)
         {
-            particles = new SplitterParticle[100];
+            particles = new SplitterParticle[300];
             for (int i = 0; i < particles.Length; i++)
             {
-                particles[i] = new SplitterParticle(spark, rand);
+                if(i%2 == 0)
+                    particles[i] = new SplitterParticle(spark, rand);
+                else
+                    particles[i] = new SplitterParticle(secondSpark, rand);
             }
         }
 

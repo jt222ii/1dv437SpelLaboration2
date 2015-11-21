@@ -19,7 +19,7 @@ namespace FireAndExplosions
         public SplitterParticle(Texture2D spark, Random rand)
         {
             _spark = spark;
-            randomDirection = new Vector2((float)rand.NextDouble() - 0.5f, (float)rand.NextDouble() - 1.3f);
+            randomDirection = new Vector2((float)rand.NextDouble() - 0.5f, (float)rand.NextDouble() - 1.1f);
             //normalize to get it spherical vector with length 1.0
             randomDirection.Normalize();
             //add random length between 0 to maxSpeed

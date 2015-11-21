@@ -16,6 +16,7 @@ namespace FireAndExplosions
         Camera camera;
 
         Texture2D splitterTexture;
+        Texture2D splitterSecondTexture;
         Texture2D smokeTexture;
         Texture2D shockwaveTexture;
         Texture2D explosionTexture;
@@ -56,8 +57,9 @@ namespace FireAndExplosions
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            splitterTexture = Content.Load<Texture2D>("spark");
-            splitterSystem = new SplitterSystem(splitterTexture);
+            splitterSecondTexture = Content.Load<Texture2D>("Spark2");
+            splitterTexture = Content.Load<Texture2D>("Spark3");
+            splitterSystem = new SplitterSystem(splitterTexture, splitterSecondTexture);
 
             smokeTexture = Content.Load<Texture2D>("particlesmokepng");
             smokeSystem = new SmokeSystem(smokeTexture);
