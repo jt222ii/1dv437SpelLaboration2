@@ -13,7 +13,7 @@ namespace FireAndExplosions.Smoke
         public float maxSpeed = 0.2f;
         public Texture2D _smoke;
 
-        private Vector2 startPosition = new Vector2(0.5f, 0.85f);
+        private Vector2 startPosition;
         private Vector2 acceleration = new Vector2(0.0f, -0.2f);
         private Vector2 velocity;
 
@@ -25,6 +25,7 @@ namespace FireAndExplosions.Smoke
         private float timeLived;
         private float randomRotation;
         private float maxTimeToLive;
+        private float scale;
 
         public float fade;
         public float particleSize;
@@ -32,10 +33,13 @@ namespace FireAndExplosions.Smoke
 
         public Vector2 position;
 
+
         Random rand;
 
-        public SmokeParticle(Texture2D smoke, Random random, float timeToLive)
+        public SmokeParticle(Texture2D smoke, Random random, float timeToLive, float Scale, Vector2 startLocation)
         {
+            startPosition = startLocation;
+            scale = Scale;
             _smoke = smoke;
             rand = random;
             maxTimeToLive = timeToLive;
@@ -49,7 +53,7 @@ namespace FireAndExplosions.Smoke
             fade -= elapsedTime / maxTimeToLive;
             timeLived += elapsedTime;
             lifePercent = timeLived / maxTimeToLive;
-            particleSize = particleMinSize + lifePercent * particleMaxSize;
+            particleSize = (particleMinSize + lifePercent * particleMaxSize)*scale;
             velocity = elapsedTime * acceleration + velocity;
             position = elapsedTime * velocity + position;
         }
@@ -75,9 +79,9 @@ namespace FireAndExplosions.Smoke
         }
         public void Draw(SpriteBatch spriteBatch, Camera camera)
         {
-            float scale = camera.Scale(particleSize, _smoke);
+            float scale = camera.Scale(particleSize, _smoke.Width);
             Color color = new Color(fade, fade, fade, fade);
-            spriteBatch.Draw(_smoke, camera.convertToVisualCoords(position, _smoke), null, color, rotation, randomDirection, scale, SpriteEffects.None, 0.1f);
+            spriteBatch.Draw(_smoke, camera.convertToVisualCoords(position, _smoke.Width, _smoke.Height, scale), null, color, rotation, randomDirection, scale, SpriteEffects.None, 0.1f);
         }
     }
 }

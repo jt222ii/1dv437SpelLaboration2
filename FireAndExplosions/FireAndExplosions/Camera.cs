@@ -13,8 +13,6 @@ namespace FireAndExplosions
         private int sizeOfField;
         int windowSizeX;
         int windowSizeY;
-        Vector2 offput = Vector2.Zero;
-        float scale = 1;
         public void setSizeOfField(Viewport port)
         {
             windowSizeX = port.Width;
@@ -22,32 +20,22 @@ namespace FireAndExplosions
             if (windowSizeX < windowSizeY)
             {
                 sizeOfField = windowSizeX;
-                offput.Y = (windowSizeY - sizeOfField) / 2;
             }
             else
             {
                 sizeOfField = windowSizeY;
-                offput.X = (windowSizeX - sizeOfField) / 2;
             }
         }
-        public Vector2 convertToVisualCoords(Vector2 coords, Texture2D particle)
+        public Vector2 convertToVisualCoords(Vector2 coords, float width, float height, float scale)
         {
-            float visualX = coords.X * sizeOfField - (particle.Width / 2) * scale + offput.X;
-            float visualY = coords.Y * sizeOfField - (particle.Height / 2) * scale + offput.Y;
+            float visualX = coords.X * sizeOfField - (width / 2) * scale;
+            float visualY = coords.Y * sizeOfField - (height / 2) * scale;
             return new Vector2(visualX, visualY);
         }
 
-        public float Scale(float size, Texture2D texture)
+        public float Scale(float size, float width)
         {
-            scale = sizeOfField * size / texture.Width;
-            return scale;
-        }
-
-        public Vector2 convertToVisualCoordsForExplosion(Vector2 coords, Explosion2d explosion)
-        {
-            float visualX = coords.X * sizeOfField - (explosion.frameWidth) + offput.X;
-            float visualY = coords.Y * sizeOfField - (explosion.frameHeight) + offput.Y;
-            return new Vector2(visualX, visualY);
+            return sizeOfField * size / width;
         }
     }
 }

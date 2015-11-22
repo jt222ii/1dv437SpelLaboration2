@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +15,13 @@ namespace FireAndExplosions.Smoke
         private float time = 0;
         private static Random rand = new Random();
         private Texture2D smoke;
+        float scale;
+        Vector2 _startLocation;
 
-        public SmokeSystem(Texture2D smokeTexture)
+        public SmokeSystem(Texture2D smokeTexture, float Scale, Vector2 startLocation)
         {
+            _startLocation = startLocation;
+            scale = Scale;
             smoke = smokeTexture;
             while (particles.Count<(maxParticles-(maxParticles*0.1)))
             {
@@ -27,7 +32,7 @@ namespace FireAndExplosions.Smoke
         {
             if (particles.Count < maxParticles)
             {
-                particles.Add(new SmokeParticle(smoke, rand, particlesLifeTime));
+                particles.Add(new SmokeParticle(smoke, rand, particlesLifeTime, scale, _startLocation));
             }
         }
         public void Update(float elapsedTime)

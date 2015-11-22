@@ -19,9 +19,14 @@ namespace FireAndExplosions.Explosion
         public int frameWidth;
         public int frameHeight;
         public float size = 0.2f;
+        float secondScale;
         Camera _camera;
-        public Explosion2d(SpriteBatch spriteBatch, Texture2D explosionTexture, Camera camera)
+        Vector2 location;
+        public Explosion2d(SpriteBatch spriteBatch, Texture2D explosionTexture, Camera camera, float SecondScale, Vector2 startLocation)
         {
+            location = startLocation;
+            secondScale = SecondScale;
+            size = size * secondScale;
             _camera = camera;
             timeElapsed = 0;
             _spriteBatch = spriteBatch;
@@ -32,10 +37,6 @@ namespace FireAndExplosions.Explosion
         public void Draw(float elapsedTime)
         {
             timeElapsed += elapsedTime;
-            //if (timeElapsed >= maxTime)
-            //{
-            //    timeElapsed = 0;
-            //}
             float percentAnimated = timeElapsed / maxTime;
             int frame = (int)(percentAnimated * numberOfFrames);
             int frameX = frame % numFramesX;
@@ -44,8 +45,8 @@ namespace FireAndExplosions.Explosion
             int frameHeight = _explosion.Height / numFramesY;
 
             Rectangle rect = new Rectangle(frameWidth * frameX, frameHeight * frameY, frameWidth, frameHeight);
-            float scale = _camera.Scale(size, _explosion);
-            _spriteBatch.Draw(_explosion, _camera.convertToVisualCoordsForExplosion(new Vector2(0.5f, 0.8f), this), rect, Color.White, scale, Vector2.Zero, 2, SpriteEffects.None, 1f);
+            float scale = _camera.Scale(size, frameWidth)*2;
+            _spriteBatch.Draw(_explosion, _camera.convertToVisualCoords(location, frameWidth, frameHeight, scale), rect, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 1f);
         }
     }
 }

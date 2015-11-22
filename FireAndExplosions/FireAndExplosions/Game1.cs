@@ -15,15 +15,7 @@ namespace FireAndExplosions
         SpriteBatch spriteBatch;
         Camera camera;
 
-        Texture2D splitterTexture;
-        Texture2D splitterSecondTexture;
-        Texture2D smokeTexture;
-        Texture2D shockwaveTexture;
-        Texture2D explosionTexture;
-
-        SplitterSystem splitterSystem;
-        SmokeSystem smokeSystem;
-        Explosion2d explosion;
+        ExplosionView explosionView;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -32,6 +24,7 @@ namespace FireAndExplosions
             graphics.PreferredBackBufferHeight = 900;
             graphics.ApplyChanges();
             camera = new Camera();
+            
 
         }
 
@@ -56,17 +49,9 @@ namespace FireAndExplosions
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            splitterSecondTexture = Content.Load<Texture2D>("Spark2");
-            splitterTexture = Content.Load<Texture2D>("Spark3");
-            splitterSystem = new SplitterSystem(splitterTexture, splitterSecondTexture);
-
-            smokeTexture = Content.Load<Texture2D>("particlesmokepng");
-            smokeSystem = new SmokeSystem(smokeTexture);
+            explosionView = new ExplosionView(Content, camera, spriteBatch);
+            explosionView.createExplosion(new Vector2(0.5f, 0.5f), 0.9f);
             camera.setSizeOfField(graphics.GraphicsDevice.Viewport);
-            //shockwaveTexture = Content.Load<Texture2D>("");
-            explosionTexture = Content.Load<Texture2D>("ExplosionSprite");
-            explosion = new Explosion2d(spriteBatch, explosionTexture, camera);
             // TODO: use this.Content to load your game content here
         }
 
@@ -88,10 +73,8 @@ namespace FireAndExplosions
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            float timeElapsedSeconds = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            splitterSystem.Update(timeElapsedSeconds);
-            smokeSystem.Update(timeElapsedSeconds);
-            
+
+            explosionView.UpdateExplosion(gameTime);         
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -104,12 +87,7 @@ namespace FireAndExplosions
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            spriteBatch.Begin(SpriteSortMode.FrontToBack);
-            splitterSystem.Draw(spriteBatch, camera);
-            smokeSystem.Draw(spriteBatch, camera);
-            explosion.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
-            // TODO: Add your drawing code here
-            spriteBatch.End();
+            explosionView.DrawExplosion(gameTime);
             base.Draw(gameTime);
         }
     }

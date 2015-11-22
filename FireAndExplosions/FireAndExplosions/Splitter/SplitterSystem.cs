@@ -11,26 +11,23 @@ namespace FireAndExplosions
     {
         public SplitterParticle[] particles;
         private static Random rand = new Random();
-        public SplitterSystem(Texture2D spark, Texture2D secondSpark)
+        public SplitterSystem(Texture2D spark, Texture2D secondSpark, SpriteBatch spriteBatch, Camera camera, float scale, Vector2 startLocation)
         {
             particles = new SplitterParticle[300];
             for (int i = 0; i < particles.Length; i++)
             {
                 if(i%2 == 0)
-                    particles[i] = new SplitterParticle(spark, rand);
+                    particles[i] = new SplitterParticle(spark, rand, spriteBatch, camera, scale, startLocation);
                 else
-                    particles[i] = new SplitterParticle(secondSpark, rand);
+                    particles[i] = new SplitterParticle(secondSpark, rand, spriteBatch, camera, scale, startLocation);
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch, Camera camera)
+        public void Draw()
         {
-            
             foreach (SplitterParticle particle in particles)
             {
-                //flytta detta till partikeln i fråga
-                float scale = camera.Scale(particle.particleSize, particle._spark);
-                spriteBatch.Draw(particle._spark, camera.convertToVisualCoords(particle.position, particle._spark), null, Color.White, 0, particle.randomDirection, scale, SpriteEffects.None, 0.2f);
+                particle.Draw();
             }
         }
 
