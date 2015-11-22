@@ -50,7 +50,7 @@ namespace FireAndExplosions
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             explosionView = new ExplosionView(Content, camera, spriteBatch);
-            explosionView.createExplosion(new Vector2(0.5f, 0.5f), 0.9f);
+            explosionView.createExplosion(new Vector2(0.5f, 0.5f), 0.5f);
             camera.setSizeOfField(graphics.GraphicsDevice.Viewport);
             // TODO: use this.Content to load your game content here
         }
@@ -74,7 +74,11 @@ namespace FireAndExplosions
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            explosionView.UpdateExplosion(gameTime);         
+            explosionView.UpdateExplosion(gameTime);
+            if (Keyboard.GetState().IsKeyDown(Keys.R))
+            {
+                explosionView.createExplosion(new Vector2(0.5f, 0.5f), 0.5f);
+            }
             // TODO: Add your update logic here
 
             base.Update(gameTime);

@@ -9,17 +9,25 @@ namespace FireAndExplosions
 {
     class SplitterSystem
     {
-        public SplitterParticle[] particles;
+        float particlesLifeTime = 8f;
+        float timeLived = 0;
+        private List<SplitterParticle> particles = new List<SplitterParticle>();
+        int maxParticles = 500;
         private static Random rand = new Random();
         public SplitterSystem(Texture2D spark, Texture2D secondSpark, SpriteBatch spriteBatch, Camera camera, float scale, Vector2 startLocation)
         {
-            particles = new SplitterParticle[300];
-            for (int i = 0; i < particles.Length; i++)
+            int i = 0;
+            while(particles.Count < maxParticles)
             {
-                if(i%2 == 0)
-                    particles[i] = new SplitterParticle(spark, rand, spriteBatch, camera, scale, startLocation);
+                if (i % 2 == 0)
+                {
+                    particles.Add(new SplitterParticle(spark, rand, spriteBatch, camera, scale, startLocation, particlesLifeTime));
+                }
                 else
-                    particles[i] = new SplitterParticle(secondSpark, rand, spriteBatch, camera, scale, startLocation);
+                {
+                    particles.Add(new SplitterParticle(secondSpark, rand, spriteBatch, camera, scale, startLocation, particlesLifeTime));
+                }
+                i++;
             }
         }
 
@@ -32,10 +40,15 @@ namespace FireAndExplosions
         }
 
         public void Update(float timeElapsed)
-        {
+        {           
             foreach (SplitterParticle particle in particles)
             {
                 particle.move(timeElapsed);
+            }
+            timeLived += timeElapsed;
+            if(timeLived >= particlesLifeTime)
+            {
+                particles.Clear();
             }
         }
 
