@@ -1,4 +1,5 @@
 ﻿using FireAndExplosions.Explosion;
+using FireAndExplosions.Shockwave;
 using FireAndExplosions.Smoke;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -24,6 +25,7 @@ namespace FireAndExplosions
         SplitterSystem splitterSystem;
         SmokeSystem smokeSystem;
         Explosion2d explosion;
+        shockwave shockwave;
         public ExplosionView(ContentManager content, Camera camera, SpriteBatch spriteBatch)
         {
             _content = content;
@@ -36,11 +38,14 @@ namespace FireAndExplosions
             splitterTexture = _content.Load<Texture2D>("Spark3");
             splitterSystem = new SplitterSystem(splitterTexture, splitterSecondTexture, _spriteBatch, _camera, scale, startLocation);
 
-            smokeTexture = _content.Load<Texture2D>("particlesmokepng");
+            smokeTexture = _content.Load<Texture2D>("Smoketest2");
             smokeSystem = new SmokeSystem(smokeTexture, scale, startLocation);
-            //shockwaveTexture = Content.Load<Texture2D>("");
+
             explosionTexture = _content.Load<Texture2D>("ExplosionSprite");
             explosion = new Explosion2d(_spriteBatch, explosionTexture, _camera, scale, startLocation);
+
+            shockwaveTexture = _content.Load<Texture2D>("Shockwave2");
+            shockwave = new shockwave(_spriteBatch, shockwaveTexture, _camera, scale, startLocation);
         }
         public void UpdateExplosion(GameTime gameTime)
         {
@@ -54,7 +59,7 @@ namespace FireAndExplosions
             splitterSystem.Draw();
             smokeSystem.Draw(_spriteBatch, _camera);
             explosion.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
-            // TODO: Add your drawing code here
+            shockwave.Draw((float)gameTime.ElapsedGameTime.TotalSeconds);
             _spriteBatch.End();
         }
     }

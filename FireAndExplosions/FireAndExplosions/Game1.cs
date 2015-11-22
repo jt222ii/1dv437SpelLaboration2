@@ -16,6 +16,8 @@ namespace FireAndExplosions
         Camera camera;
 
         ExplosionView explosionView;
+        Vector2 explosionLocation = new Vector2(0.5f, 0.5f);
+        float explosionScale = 0.3f;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -50,7 +52,7 @@ namespace FireAndExplosions
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             explosionView = new ExplosionView(Content, camera, spriteBatch);
-            explosionView.createExplosion(new Vector2(0.5f, 0.5f), 0.5f);
+            explosionView.createExplosion(explosionLocation, explosionScale);
             camera.setSizeOfField(graphics.GraphicsDevice.Viewport);
             // TODO: use this.Content to load your game content here
         }
@@ -77,7 +79,7 @@ namespace FireAndExplosions
             explosionView.UpdateExplosion(gameTime);
             if (Keyboard.GetState().IsKeyDown(Keys.R))
             {
-                explosionView.createExplosion(new Vector2(0.5f, 0.5f), 0.5f);
+                explosionView.createExplosion(explosionLocation, explosionScale);
             }
             // TODO: Add your update logic here
 

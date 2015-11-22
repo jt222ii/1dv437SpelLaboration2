@@ -9,7 +9,7 @@ namespace FireAndExplosions
 {
     class SplitterSystem
     {
-        float particlesLifeTime = 8f;
+        float particlesLifeTime = 4f;
         float timeLived = 0;
         private List<SplitterParticle> particles = new List<SplitterParticle>();
         int maxParticles = 500;

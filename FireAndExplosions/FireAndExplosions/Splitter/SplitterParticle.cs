@@ -31,7 +31,7 @@ namespace FireAndExplosions
             _spark = spark;
             _camera = camera;
             _spriteBatch = spriteBatch;
-            randomDirection = new Vector2((float)rand.NextDouble() - 0.5f, (float)rand.NextDouble() - 0.6f);
+            randomDirection = new Vector2((float)rand.NextDouble() - 0.5f, (float)rand.NextDouble() - 0.7f);
             //normalize to get it spherical vector with length 1.0
             randomDirection.Normalize();
             //add random length between 0 to maxSpeed
