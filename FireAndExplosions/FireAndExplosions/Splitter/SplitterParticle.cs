@@ -9,7 +9,7 @@ namespace FireAndExplosions
 {
     class SplitterParticle
     {
-        public float particleSize = 0.02f;
+        public float particleSize = 0.01f;
         public Vector2 randomDirection;
         public float maxSpeed = 1f;
         public Texture2D _spark;
