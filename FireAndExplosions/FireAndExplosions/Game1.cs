@@ -16,8 +16,8 @@ namespace FireAndExplosions
         Camera camera;
 
         ExplosionView explosionView;
-        Vector2 explosionLocation = new Vector2(0.5f, 0.5f);
-        float explosionScale = 0.3f;
+        Vector2 explosionLocation = new Vector2(0.5f, 0.75f);
+        float explosionScale = 0.5f;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);

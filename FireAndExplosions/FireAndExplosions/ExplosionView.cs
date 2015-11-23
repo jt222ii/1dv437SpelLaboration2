@@ -38,11 +38,12 @@ namespace FireAndExplosions
             splitterTexture = _content.Load<Texture2D>("Spark3");
             splitterSystem = new SplitterSystem(splitterTexture, splitterSecondTexture, _spriteBatch, _camera, scale, startLocation);
 
-            smokeTexture = _content.Load<Texture2D>("Smoketest2");
+            smokeTexture = _content.Load<Texture2D>("Smoketest");
             smokeSystem = new SmokeSystem(smokeTexture, scale, startLocation);
 
-            explosionTexture = _content.Load<Texture2D>("ExplosionSprite");
+            explosionTexture = _content.Load<Texture2D>("Fixforshittyschoolcomputer");
             explosion = new Explosion2d(_spriteBatch, explosionTexture, _camera, scale, startLocation);
+            
 
             shockwaveTexture = _content.Load<Texture2D>("Shockwave2");
             shockwave = new shockwave(_spriteBatch, shockwaveTexture, _camera, scale, startLocation);

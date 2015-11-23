@@ -12,8 +12,8 @@ namespace FireAndExplosions.Explosion
         float timeElapsed;
         float maxTime = 1f;
         int numberOfFrames = 40;
-        int numFramesX = 40;
-        int numFramesY = 1;
+        int numFramesX = 10;
+        int numFramesY = 4;
         SpriteBatch _spriteBatch;
         Texture2D _explosion;
         public int frameWidth;

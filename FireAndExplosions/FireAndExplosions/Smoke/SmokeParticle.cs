@@ -54,8 +54,8 @@ namespace FireAndExplosions.Smoke
             timeLived += elapsedTime;
             lifePercent = timeLived / maxTimeToLive;
             particleSize = (particleMinSize + lifePercent * particleMaxSize)*scale;
-            velocity = elapsedTime * acceleration + velocity;
-            position = elapsedTime * velocity + position;
+            velocity = (elapsedTime * acceleration + velocity);
+            position = elapsedTime * velocity*scale + position;
         }
 
         public bool lifeIsOver()
