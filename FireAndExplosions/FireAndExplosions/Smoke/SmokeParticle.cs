@@ -44,7 +44,7 @@ namespace FireAndExplosions.Smoke
             rand = random;
             maxTimeToLive = timeToLive;
             initOrResetParticle();
-            randomRotation = 0.015f * ((float)rand.NextDouble() - (float)rand.NextDouble());
+            randomRotation = 0.025f * ((float)rand.NextDouble() - (float)rand.NextDouble());
         }
         public void move(float elapsedTime)
         {

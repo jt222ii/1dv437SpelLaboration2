@@ -55,10 +55,14 @@ namespace FireAndExplosions
         //for funzies will need to remove on the next lab
         public void collide()
         {
-            if(position.Y > startPos.Y+particleSize*50)
+            if(position.Y > 1)
             {
                 velocity.Y = -velocity.Y * 0.65f;
                 velocity.X = velocity.X * 0.85f;
+            }
+            if (position.X >= 1 || position.X <= 0)
+            {
+                velocity.X = -velocity.X;
             }
         }
     }
