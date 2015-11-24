@@ -49,11 +49,9 @@ namespace FireAndExplosions
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             explosionView = new ExplosionView(Content, camera, spriteBatch, explosionLocation, explosionScale);
             camera.setSizeOfField(graphics.GraphicsDevice.Viewport);
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>

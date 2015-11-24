@@ -11,8 +11,8 @@ namespace FireAndExplosions
     class Camera
     {
         private int sizeOfField;
-        int windowSizeX;
-        int windowSizeY;
+        private int windowSizeX;
+        private int windowSizeY;
         public void setSizeOfField(Viewport port)
         {
             windowSizeX = port.Width;
