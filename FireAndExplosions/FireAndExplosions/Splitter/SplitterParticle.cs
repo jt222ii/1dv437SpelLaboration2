@@ -9,18 +9,18 @@ namespace FireAndExplosions
 {
     class SplitterParticle
     {
-        public float particleSize = 0.01f;
-        public Vector2 randomDirection;
-        public float maxSpeed = 1f;
-        public Texture2D _spark;
-        public Vector2 position;
-        public Vector2 velocity;
-        public Vector2 acceleration = new Vector2(0.0f, 0.7f);
-        public Vector2 startPos;
+        private float particleSize = 0.01f;
+        private Vector2 randomDirection;
+        private float maxSpeed = 1f;
+        private Texture2D _spark;
+        private Vector2 position;
+        private Vector2 velocity;
+        private Vector2 acceleration = new Vector2(0.0f, 0.7f);
+        private Vector2 startPos;
         private float particleLifeTime;
-        float fade = 1;
-        SpriteBatch _spriteBatch;
-        Camera _camera;
+        private float fade = 1;
+        private SpriteBatch _spriteBatch;
+        private Camera _camera;
         public SplitterParticle(Texture2D spark, Random rand, SpriteBatch spriteBatch, Camera camera, float scale, Vector2 StartLocation, float particlesLifeTime)
         {
             particleLifeTime = particlesLifeTime;

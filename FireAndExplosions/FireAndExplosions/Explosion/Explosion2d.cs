@@ -9,19 +9,19 @@ namespace FireAndExplosions.Explosion
 {
     class Explosion2d
     {
-        float timeElapsed;
-        float maxTime = 1f;
-        int numberOfFrames = 40;
-        int numFramesX = 10;
-        int numFramesY = 4;
-        SpriteBatch _spriteBatch;
-        Texture2D _explosion;
-        public int frameWidth;
-        public int frameHeight;
+        private float timeElapsed;
+        private float maxTime = 1f;
+        private int numberOfFrames = 40;
+        private int numFramesX = 10;
+        private int numFramesY = 4;
+        private SpriteBatch _spriteBatch;
+        private Texture2D _explosion;
+        private int frameWidth;
+        private int frameHeight;
         public float size = 0.2f;
-        float secondScale;
-        Camera _camera;
-        Vector2 location;
+        private float secondScale;
+        private Camera _camera;
+        private Vector2 location;
         public Explosion2d(SpriteBatch spriteBatch, Texture2D explosionTexture, Camera camera, float SecondScale, Vector2 startLocation)
         {
             location = startLocation;

@@ -13,19 +13,19 @@ namespace FireAndExplosions
 {
     class ExplosionView
     {
-        ContentManager _content;
-        Camera _camera;
-        SpriteBatch _spriteBatch;
-        Texture2D splitterTexture;
-        Texture2D splitterSecondTexture;
-        Texture2D smokeTexture;
-        Texture2D shockwaveTexture;
-        Texture2D explosionTexture;
+        private ContentManager _content;
+        private Camera _camera;
+        private SpriteBatch _spriteBatch;
+        private Texture2D splitterTexture;
+        private Texture2D splitterSecondTexture;
+        private Texture2D smokeTexture;
+        private Texture2D shockwaveTexture;
+        private Texture2D explosionTexture;
 
-        SplitterSystem splitterSystem;
-        SmokeSystem smokeSystem;
-        Explosion2d explosion;
-        shockwave shockwave;
+        private SplitterSystem splitterSystem;
+        private SmokeSystem smokeSystem;
+        private Explosion2d explosion;
+        private shockwave shockwave;
         public ExplosionView(ContentManager content, Camera camera, SpriteBatch spriteBatch, Vector2 startLocation, float scale)
         {
             _content = content;

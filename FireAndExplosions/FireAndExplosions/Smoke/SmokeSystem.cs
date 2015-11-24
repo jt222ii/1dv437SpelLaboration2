@@ -14,8 +14,8 @@ namespace FireAndExplosions.Smoke
         private int particlesLifeTime = 3;
         private static Random rand = new Random();
         private Texture2D smoke;
-        float scale;
-        Vector2 _startLocation;
+        private float scale;
+        private Vector2 _startLocation;
 
         public SmokeSystem(Texture2D smokeTexture, float Scale, Vector2 startLocation)
         {

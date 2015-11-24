@@ -9,12 +9,12 @@ namespace FireAndExplosions.Shockwave
 {
     class shockwave
     {
-        Vector2 position;
-        Camera _camera;
-        Texture2D texture;
-        float scale;
-        SpriteBatch _spriteBatch;
-        float fade = 1;
+        private Vector2 position;
+        private Camera _camera;
+        private Texture2D texture;
+        private float scale;
+        private SpriteBatch _spriteBatch;
+        private float fade = 1;
         private float particleMinSize = 0;
         private float particleMaxSize = 0.8f;
         private float maxTimeToLive = 0.8f;
@@ -29,7 +29,6 @@ namespace FireAndExplosions.Shockwave
             _camera = camera;
             texture = shockwaveTexture;
             _spriteBatch = spriteBatch;
-
         }
 
         public void Draw(float elapsedTime)

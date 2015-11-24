@@ -11,14 +11,14 @@ namespace FireAndExplosions
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
-        Camera camera;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private Camera camera;
 
-        ExplosionView explosionView;
+        private ExplosionView explosionView;
 
-        Vector2 explosionLocation = new Vector2(0.5f, 0.5f);
-        float explosionScale = 0.5f;
+        private Vector2 explosionLocation = new Vector2(0.5f, 0.5f);
+        private float explosionScale = 0.5f;
 
         public Game1()
         {
@@ -28,8 +28,6 @@ namespace FireAndExplosions
             graphics.PreferredBackBufferHeight = 900;
             graphics.ApplyChanges();
             camera = new Camera();
-            
-
         }
 
         /// <summary>

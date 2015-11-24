@@ -9,10 +9,10 @@ namespace FireAndExplosions
 {
     class SplitterSystem
     {
-        float particlesLifeTime = 4f;
-        float timeLived = 0;
+        private float particlesLifeTime = 4f;
+        private float timeLived = 0;
         private List<SplitterParticle> particles = new List<SplitterParticle>();
-        int maxParticles = 500;
+        private int maxParticles = 500;
         private static Random rand = new Random();
         public SplitterSystem(Texture2D spark, Texture2D secondSpark, SpriteBatch spriteBatch, Camera camera, float scale, Vector2 startLocation)
         {

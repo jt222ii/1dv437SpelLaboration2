@@ -9,9 +9,9 @@ namespace FireAndExplosions.Smoke
 {
     class SmokeParticle
     {
-        public Vector2 randomDirection;
-        public float maxSpeed = 0.2f;
-        public Texture2D _smoke;
+        private Vector2 randomDirection;
+        private float maxSpeed = 0.2f;
+        private Texture2D _smoke;
 
         private Vector2 startPosition;
         private Vector2 acceleration = new Vector2(0.0f, -0.2f);
@@ -27,11 +27,11 @@ namespace FireAndExplosions.Smoke
         private float maxTimeToLive;
         private float scale;
 
-        public float fade;
-        public float particleSize;
-        public float rotation;
+        private float fade;
+        private float particleSize;
+        private float rotation;
 
-        public Vector2 position;
+        private Vector2 position;
 
 
         Random rand;
