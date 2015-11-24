@@ -26,14 +26,12 @@ namespace FireAndExplosions
         SmokeSystem smokeSystem;
         Explosion2d explosion;
         shockwave shockwave;
-        public ExplosionView(ContentManager content, Camera camera, SpriteBatch spriteBatch)
+        public ExplosionView(ContentManager content, Camera camera, SpriteBatch spriteBatch, Vector2 startLocation, float scale)
         {
             _content = content;
             _camera = camera;
             _spriteBatch = spriteBatch;
-        }
-        public void createExplosion(Vector2 startLocation, float scale)
-        {
+
             splitterSecondTexture = _content.Load<Texture2D>("Spark2");
             splitterTexture = _content.Load<Texture2D>("Spark3");
             splitterSystem = new SplitterSystem(splitterTexture, splitterSecondTexture, _spriteBatch, _camera, scale, startLocation);
@@ -43,7 +41,7 @@ namespace FireAndExplosions
 
             explosionTexture = _content.Load<Texture2D>("Fixforshittyschoolcomputer");
             explosion = new Explosion2d(_spriteBatch, explosionTexture, _camera, scale, startLocation);
-            
+
 
             shockwaveTexture = _content.Load<Texture2D>("Shockwave2");
             shockwave = new shockwave(_spriteBatch, shockwaveTexture, _camera, scale, startLocation);
