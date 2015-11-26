@@ -37,7 +37,7 @@ namespace _2dAnimering
 
         public Vector2 convertToVisualCoords(Vector2 coords, Explosion explosion)
         {
-            //just made the offput so that its always in the center
+            //I made the offput just to always center the 1:1 ratio field even when widescreen
             float visualX = coords.X * sizeOfField - (explosion.frameWidth / 2) + offput.X;
             float visualY = coords.Y * sizeOfField - (explosion.frameHeight / 2) + offput.Y;
             return new Vector2(visualX, visualY);

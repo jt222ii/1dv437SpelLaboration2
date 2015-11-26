@@ -33,6 +33,8 @@ namespace PartiklarOchSimuleringar
 
         public Vector2 convertToVisualCoords(Vector2 coords, SplitterParticle particle)
         {
+            //I made the offput just to always center the 1:1 ratio field even when widescreen
+            //Times the scale because the width of the texture will not be its original size if the scale is anything but 1. (ie 64px scale 0.5 is 32px)
             float visualX = coords.X * sizeOfField - (particle._spark.Width/2)*scale + offput.X;
             float visualY = coords.Y * sizeOfField - (particle._spark.Height / 2) * scale + offput.Y;
             return new Vector2(visualX, visualY);

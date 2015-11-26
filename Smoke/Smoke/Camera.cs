@@ -32,6 +32,7 @@ namespace Smoke
 
         public Vector2 convertToVisualCoords(Vector2 coords, SmokeParticle particle)
         {
+            //I made the offput just to always center the 1:1 ratio field even when widescreen
             float visualX = coords.X * sizeOfField - (particle._smoke.Width / 2) * scale + offput.X;
             float visualY = coords.Y * sizeOfField - (particle._smoke.Height / 2) * scale + offput.Y;
             return new Vector2(visualX, visualY);
